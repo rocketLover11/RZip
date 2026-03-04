@@ -1,5 +1,6 @@
 *.o
 *.exe
+*.rz
 a.out
 build/
 .vscode/
