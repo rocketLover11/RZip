@@ -16,6 +16,7 @@ $(BUILDDIR):
 
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS) $(LIBS)
+	$(CC) -o $(TARGET) build/main.o
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
