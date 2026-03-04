@@ -24,4 +24,4 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 .PHONY: all clean
 
 clean:
-	rm -rf $(BUILDDIR) $(TARGET)
+	del /q /f build
