@@ -28,6 +28,10 @@ void add(FILE *arch, const char *filename) {
     printf("Added: %s (%ld bytes)\n", filename, size);
 }
 
+void extract(FILE *arch) {
+    printf("Not implemented yet...");
+}
+
 void printhelp() {
     printf("Options:\n\t-h: Help\n\t-c: Create and Compress an archive\n\t-a: Add a file to an archive\n\t-d: Decompress and extract an archive");
 }
@@ -49,10 +53,30 @@ int main(int argc, char *argv[]) {
                 perror("Failed to create archive");
                 return 1;
             }
+            fclose(arch);
+            break;
         case 'a':
-            FILE *arch = fopen("");
+            FILE *archive = fopen(argv[2], "wb");
+            if (!archive) {
+                perror("Failed to open archive");
+                return 1;
+            }
             add(archive, argv[3]);
+            fclose(archive);
+            break;
+        case 'd':
+            FILE *to_decompress = fopen(argv[2], "rb");
+            if (!to_decompress) {
+                perror("Failed to open archive");
+                return 1;
+            }
+            extract(to_decompress);
+            fclose(to_decompress);
+            break;
         default:
             printf("Unknown Option \"-%c\"", option);
+            return 1;
     }
+
+    return 0;
 }
